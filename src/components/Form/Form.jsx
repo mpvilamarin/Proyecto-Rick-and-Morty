@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import validation from "../Validation/Validation";
 
-const Form = () => {
+const Form = ({ login }) => {
     const [errors, setErrors] = useState ({});
     const [userData, setUserData] = useState ({
         email: '',
@@ -20,12 +20,19 @@ const Form = () => {
         }))
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        login(userData);
+    }
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email: </label>
             <input type="email" name='email' value={userData.email} onChange={handleChange} />
+            {errors.email && <p style= {{color: "red"}}>{errors.email}</p>}
             <label htmlFor="">Password: </label>
             <input type="password" name="password" value={userData.password} onChange={handleChange}/>
+            {errors.password && <p style= {{color: "red"}}>{errors.password}</p>}
 
             <button>Submit</button>
         </form>
