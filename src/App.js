@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Detail from './components/Detail';
 import Form from './components/Form/Form';
+import Favorite from './components/Favorite';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -58,6 +59,7 @@ function App() {
             <Route path='/home' element= { <Cards characters={characters} onClose={onClose}/> }/>
             <Route path='/about' element= {<About/>} />
             <Route path= '/Detail/:id' element= {<Detail/>} />
+            <Route path= '/favorites' element= {<Favorite/>} />
          </Routes>
          
       </div>
