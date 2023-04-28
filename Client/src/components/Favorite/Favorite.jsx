@@ -1,17 +1,21 @@
-import Card from "./Card";
+import Card from "../Card/Card";
 import { connect, useDispatch } from 'react-redux';
-import { filterCards, orderCards } from "../redux/actions";
-import { removeFav } from "../redux/actions";
+import { filterCards, orderCards } from "../../redux/actions";
+import { removeFav } from "../../redux/actions";
+import { useState } from "react";
 
 const Favorites = ({ myFavorites, removeFav }) => {
     const handleRemoveFav = (id, onClose) => {
         removeFav(id, onClose);
     }
 
+    const [aux, setAux] = useState(false);
+
     const dispatch = useDispatch();
 
     const handleOrder = (event) => {
         dispatch(orderCards(event.target.value));
+        setAux(true);
     }
 
     const handleFilter = (event) => {
@@ -31,6 +35,7 @@ const Favorites = ({ myFavorites, removeFav }) => {
             <option value="Female">Female</option>
             <option value="Genderless">Genderless</option>
             <option value="unknown">unknown</option>
+            <option value="allCharacters">All Characters</option>
         </select>
 
         {

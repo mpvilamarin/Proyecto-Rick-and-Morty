@@ -8,7 +8,7 @@ export default function SearchBar({ onSearch }) {
       setId(event.target.value)
    }
    return (
-      <div>
+      <div className="searchbar-container">
          <input type='search' onChange={handleChange} value={(id)} />
          <button onClick={() => onSearch(id)}>Agregar</button>
       </div>

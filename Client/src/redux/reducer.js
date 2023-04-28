@@ -1,4 +1,5 @@
 import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./action-types";
+import axios from 'axios';
 
 const initialState = {
     myFavorites: [],
@@ -10,8 +11,8 @@ const reducer = (state = initialState, { type, payload}) => {
         case ADD_FAV:
             return {
                 ...state,
-                myFavorites: [...state.allCharactersFav, payload],
-                allCharactersFav: [...state.allCharactersFav, payload]
+                myFavorites: payload,
+                allCharactersFav: payload
             }
 
         case REMOVE_FAV:
@@ -24,7 +25,10 @@ const reducer = (state = initialState, { type, payload}) => {
             const allCharactersFiltered = state.allCharactersFav.filter(character => character.gender === payload)
             return {
                 ...state,
-                myFavorites: allCharactersFiltered
+                myFavorites:
+                payload === 'allCharacters'
+                ? [...state.allCharactersFav]
+                : allCharactersFiltered
             }
 
         case ORDER:
